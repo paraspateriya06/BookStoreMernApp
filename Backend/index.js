@@ -25,8 +25,7 @@ app.use(express.json());
 
 app.use(cors(
   {
-    origin: "https://mooneybookstore.vercel.app/", // Replace with your frontend URL
-    credentials: true, // Allow credentials (cookies)
+    origin: "https://mooneybookstore.vercel.app/" // Replace with your frontend UR
   }
 ));
 
