@@ -23,7 +23,12 @@ app.use(express.json());
 // Middleware for handling CORS POLICY
 // Ops 1 ::: Allow All Origins with Default of cors
 
-app.use(cors());
+app.use(cors(
+  {
+    origin: "https://mooneybookstore.vercel.app/", // Replace with your frontend URL
+    credentials: true, // Allow credentials (cookies)
+  }
+));
 
 //ops 2: allow custom origin
 
