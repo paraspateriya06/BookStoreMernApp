@@ -72,28 +72,29 @@ BookStoreMernApp/
 
 
 ---
-
 ## 🛠️ How to Run Locally
 
+Follow these steps to run the project on your local machine:
+
 ```bash
-# Clone the repo
+# 1. Clone the repository
 git clone https://github.com/paraspateriya06/BookStoreMernApp.git
 cd BookStoreMernApp
 
-# Install backend dependencies
+# 2. Install backend dependencies
 cd Backend
 npm install
 
-# Install frontend dependencies
-cd frontend
+# 3. Install frontend dependencies
+cd ../frontend
 npm install
 
-# Start backend server
-cd Backend
+# 4. Start the backend server (PORT: 5000)
+cd ../Backend
 npm start
 
-# Start frontend dev server
-cd frontend
+# 5. Start the frontend development server (PORT: 5173 or as configured)
+cd ../frontend
 npm run dev
 
 
