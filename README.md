@@ -81,19 +81,19 @@ git clone https://github.com/paraspateriya06/BookStoreMernApp.git
 cd BookStoreMernApp
 
 # Install backend dependencies
-cd api
+cd Backend
 npm install
 
 # Install frontend dependencies
-cd ../client
+cd frontend
 npm install
 
 # Start backend server
-cd ../api
+cd Backend
 npm start
 
 # Start frontend dev server
-cd ../client
+cd frontend
 npm run dev
 
 
