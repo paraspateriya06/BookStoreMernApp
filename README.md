@@ -2,8 +2,9 @@
 
 An interactive, full-stack Book Store web application built using the **MERN stack** (MongoDB, Express.js, React.js, Node.js). It lets users browse, add, update, and delete books — demonstrating my ability to build a CRUD-based product from scratch with scalable architecture.
 
-🚀 Live Demo: [Click Here](https://your-live-link.com)  
-🧠 Want to understand my thought process? [Read the blog post](https://your-blog-link.com)
+🚀 Live Demo: [Click Here](https://mooneybookstore.vercel.app/)
+🧠 Want to understand my thought process? 
+You can read my article on my Portfolio;;
 
 ---
 
