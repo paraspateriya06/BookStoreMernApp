@@ -1,69 +1,56 @@
-// import { AiOutlineClose } from "react-icons/ai";
-// import { PiBookOpenTextLight } from "react-icons/pi";
-// import { BiUserCircle } from "react-icons/bi";
-
-// const BookModal = ({ book, onClose }) => {
-//   return (
-//     <div
-//       className="fixed bg-black bg-opacity-60 top-0 left-0 right-0 bottom-0 z-50 flex justify-center items-center"
-//       onClick={onClose}
-//     >
-//       <div
-//         onClick={(event) => event.stopPropagation()}
-//         className="w-[600px] max-w-full h-[400px] bg-white rounded-xl p-4 flex flex-col relative"
-//       >
-//         <AiOutlineClose
-//           className="absolute right-6 top-6 text-3xl text-red-600 cursor-pointer"
-//           onClick={onClose}
-//         />
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default BookModal;
-
 import { AiOutlineClose } from "react-icons/ai";
 import { PiBookOpenTextLight } from "react-icons/pi";
 import { BiUserCircle } from "react-icons/bi";
 
 const BookModal = ({ book, onClose }) => {
+  if (!book) return null;
+
   return (
     <div
-      className="fixed bg-black bg-opacity-60 top-0 left-0 right-0 bottom-0 z-50 flex justify-center items-center"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60"
       onClick={onClose}
     >
       <div
-        onClick={(event) => event.stopPropagation()}
-        className="w-[600px] max-w-full h-[400px] bg-white rounded-xl p-4 flex flex-col relative"
+        className="bg-white w-[90%] max-w-xl max-h-[90vh] rounded-xl p-6 overflow-y-auto shadow-lg relative"
+        onClick={(e) => e.stopPropagation()}
       >
-        <AiOutlineClose
-          className="absolute right-6 top-6 text-3xl text-red-600 cursor-pointer"
+        {/* Close Button */}
+        <button
           onClick={onClose}
-        />
-        <h2 className="w-fit px-4 py-1 bg-red-300 rounded-lg">
-          {book.publishYear}
-        </h2>
-        <h4 className="my-2 text-gray-500">{book._id}</h4>
-        <div className="flex justify-start items-center gap-x-2">
-          <PiBookOpenTextLight className="text-red-300 text-2xl" />
-          <h2 className="my-1">{book.title}</h2>
+          className="absolute top-4 right-4 text-2xl text-red-600 hover:text-red-800 transition"
+        >
+          <AiOutlineClose />
+        </button>
+
+        {/* Year Badge */}
+        <span className="inline-block mb-2 bg-red-400 text-white text-xs px-3 py-1 rounded-full">
+          {book.publishYear || "N/A"}
+        </span>
+
+        {/* ID */}
+        <p className="text-sm text-gray-400 mb-3 break-words">{book._id}</p>
+
+        {/* Title */}
+        <div className="flex items-center gap-2 mb-2">
+          <PiBookOpenTextLight className="text-xl text-red-400" />
+          <h2 className="text-lg font-semibold text-gray-800">{book.title || "Untitled"}</h2>
         </div>
-        <div className="flex justify-start items-center gap-x-2">
-          <BiUserCircle className="text-red-300 text-2xl" />
-          <h2 className="my-1">{book.author}</h2>
+
+        {/* Author */}
+        <div className="flex items-center gap-2 mb-4">
+          <BiUserCircle className="text-xl text-red-400" />
+          <p className="text-gray-700">{book.author || "Unknown"}</p>
         </div>
-        <p className="mt-4">Bookstore Project </p>
-        <p className="my-2">
-          Developed by Paras Mani Paterya, this full-stack Bookstore web app
-          uses MongoDB, Express.js, React.js, and Node.js. It enables users to
-          securely browse, search, and manage books with features like
-          authentication, CRUD operations, and real-time filtering. The
-          responsive UI is built with React and styled using modern CSS. The
-          backend uses a RESTful API and MongoDB for efficient data handling.
-          This project reflects strong skills in frontend-backend integration,
-          state management, and scalable web architecture.
-        </p>
+
+        {/* Description */}
+        <div className="mt-4">
+          <h3 className="font-medium text-gray-800 mb-1">About the Project</h3>
+          <p className="text-sm text-gray-600 leading-relaxed">
+            Developed by <strong>Paras Mani Paterya</strong>, this full-stack Bookstore web app uses MongoDB, Express.js, React.js, and Node.js. It enables users to securely browse, search, and manage books with features like authentication, CRUD operations, and real-time filtering.
+            <br /><br />
+            The responsive UI is built with React and styled using modern CSS (Tailwind). The backend uses a RESTful API and MongoDB for efficient data handling. This project reflects strong skills in frontend-backend integration, state management, and scalable web architecture.
+          </p>
+        </div>
       </div>
     </div>
   );

@@ -1,58 +1,56 @@
-import React ,{useState} from 'react'
+import React, { useState } from 'react';
 import BackButton from '../components/BackButton';
 import Spinner from '../components/Spinner';
 import axios from 'axios';
-import { useNavigate , useParams} from 'react-router-dom';
-import { SnackbarProvider, useSnackbar } from 'notistack';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
 
 const DeleteBook = () => {
-
-  const[loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const{id} = useParams();
-  const {enqueueSnackbar} = useSnackbar();
+  const { id } = useParams();
+  const { enqueueSnackbar } = useSnackbar();
 
-  const handleDeleteBook = () =>{
-     setLoading(true);
-      axios
+  const handleDeleteBook = () => {
+    setLoading(true);
+    axios
       .delete(`https://moneeybookstore.onrender.com/books/${id}`)
-      .then (()=>{
-        setLoading(false);
-        enqueueSnackbar('Book Deleted Successfully', {variant : 'success'});
+      .then(() => {
+        enqueueSnackbar('Book deleted successfully!', { variant: 'success' });
         navigate('/');
       })
-      .catch((error)=> {
-        setLoading(false);
-        //alert('An error happened. Please Check Console');
-        enqueueSnackbar('Error', {variant : 'error'});
-        console.log(error);
-      });
+      .catch((error) => {
+        console.error(error);
+        enqueueSnackbar('Error deleting book.', { variant: 'error' });
+      })
+      .finally(() => setLoading(false));
   };
 
   return (
-    <div className='p-4'>
-      <BackButton/>
-      <h1 className='text-3xl my-4'> Delete Book</h1>
+    <div className="min-h-screen bg-gradient-to-br from-rose-50 via-yellow-50 to-emerald-50 px-4 py-10">
+      <div className="max-w-xl mx-auto bg-white rounded-xl shadow-lg p-6">
+        <BackButton />
+        <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">🗑️ Delete Book</h1>
 
-      {loading ? <Spinner/>: '' }
-      
-      <div className='flex flex-col items-center border-2 border-sky-400 rounded-xl w-[600px] p-8 mx-auto'> 
+        {loading ? (
+          <Spinner />
+        ) : (
+          <div className="text-center">
+            <p className="text-lg text-gray-700 mb-6">
+              Are you sure you want to permanently delete this book?
+            </p>
 
-        <h3 className='text-2xl '> Are You Sure Want to delete This Book ? </h3>
-
-        <button className='p-4 bg-red-600 text-white m-8 w-full' 
-        onClick = {handleDeleteBook}
-         >
-          Sure? You Wanna Delete it... 
-          
-        </button>
+            <button
+              onClick={handleDeleteBook}
+              className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg text-sm font-semibold shadow transition"
+            >
+              Yes, Delete It
+            </button>
+          </div>
+        )}
       </div>
-
-
-
-
     </div>
-  )
-}
+  );
+};
 
-export default DeleteBook
+export default DeleteBook;
